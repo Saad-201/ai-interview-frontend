@@ -1,4 +1,6 @@
 
+import Link from "next/link"; // this imports next.js navigation component
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-8">
@@ -10,9 +12,12 @@ export default function Home() {
         Practice your interview skills with an AI interviewer.
       </p>
 
-      <button className="bg-black text-white px-6 py-3 rounded-lg">
+      <Link
+        href="/login" //this tells the next.js exactly where to go when the user clicks on the button
+        className="bg-black text-white px-6 py-3 rounded-lg"
+      >
         Start Interview
-      </button>
+      </Link>
     </main>
   );
 }
