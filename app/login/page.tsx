@@ -42,13 +42,21 @@ export default function LoginPage() { //creates the login page component
 
     const result = await response.json();
 
-   if (!response.ok) {
+  if (!response.ok) {
   console.log("Login failed:", result.message);
   alert("Email or password is incorrect");
   return;
 }
 
-window.location.href = "/welcome";
+if (result.user.role === "Tenant Admin") {
+  window.location.href = "/admin";
+} else if (result.user.role === "Recruiter") {
+  window.location.href = "/recruiter";
+} else if (result.user.role === "Candidate") {
+  window.location.href = "/candidate";
+} else {
+  console.error("Unknown user role:", result.user.role);
+}
   } catch (error) {
     console.error("Login request failed:", error);
   }
