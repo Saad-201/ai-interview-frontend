@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Interview Platform
+
+A frontend MVP for an AI Voice Interview Platform built with Next.js.
+
+## Tech Stack
+
+* Next.js 14
+* TypeScript
+* Tailwind CSS
+* React Hook Form
+* Zod
+* SQLite
+* Better SQLite3
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+After cloning the repository, run:
+
+```bash
+npm install
+```
+
+### 2. Seed the database
+
+The project uses a local SQLite database for development.
+
+Run:
+
+```bash
+npm run db:seed
+```
+
+This creates the `users` table and adds the test users.
+
+### 3. Start the development server
+
+Run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+If port 3000 is already in use, Next.js will automatically use another available port.
 
-## Learn More
+## Test Accounts
 
-To learn more about Next.js, take a look at the following resources:
+| Role         | Email                                                   | Password    |
+| ------------ | ------------------------------------------------------- | ----------- |
+| Tenant Admin | [admin@techhire.com](mailto:admin@techhire.com)         | password123 |
+| Recruiter    | [recruiter@techhire.com](mailto:recruiter@techhire.com) | password123 |
+| Candidate    | [candidate1@gmail.com](mailto:candidate1@gmail.com)     | password123 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Current Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Login page
+* Email and password validation
+* SQLite database
+* Login API
+* Mock authentication cookie
+* Login success page
+* Invalid credential handling
 
-## Deploy on Vercel
+## Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The SQLite database is created locally as:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+database.sqlite
+```
+
+The database file is excluded from Git and must be recreated by running:
+
+```bash
+npm run db:seed
+```
