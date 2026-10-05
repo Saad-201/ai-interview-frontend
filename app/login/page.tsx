@@ -1,6 +1,9 @@
 
 "use client";
 
+
+import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form"; //manages the form 
 import { z } from "zod"; //verifies the types and validates the data (define the rules for the form data)
 import { zodResolver } from "@hookform/resolvers/zod"; // connects zod with react-hook-form to validate the form data
@@ -18,7 +21,8 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>; // infers the type of the form data from the Zod schema
 
-export default function LoginPage() { //creates the login page component
+export default function LoginPage() { 
+  const [loginError, setLoginError] = useState("");//creates the login page component
   const {
     register, // lets react hook form know about our inputs
     handleSubmit,
@@ -31,6 +35,7 @@ export default function LoginPage() { //creates the login page component
   //   console.log("Login data:", data);  //prints the data into the browser console  
   // }
   async function onSubmit(data: LoginFormData) {
+    setLoginError(""); //clears any previous login error messages
   try {
     const response = await fetch("/api/auth/login", {
       method: "POST",
@@ -44,7 +49,7 @@ export default function LoginPage() { //creates the login page component
 
   if (!response.ok) {
   console.log("Login failed:", result.message);
-  alert("Email or password is incorrect");
+  setLoginError("Email or password is incorrect");
   return;
 }
 
@@ -120,6 +125,11 @@ if (result.user.role === "Tenant Admin") {
               </p>
             )}
           </div>
+             {loginError && ( //this displayes the error message if the login fails
+              <p className="text-red-500 text-sm text-center">
+             {loginError}
+              </p>
+         )}
 
           <button //this button submits the form and triggers the onSubmit function if the form passes validation
             type="submit" 
@@ -127,6 +137,22 @@ if (result.user.role === "Tenant Admin") {
           >
             Login
           </button>
+          <div className="text-center text-sm space-y-2">
+  <Link
+    href="/forgot-password"
+    className="text-blue-600 hover:underline block"
+  >
+    Forgot Password?
+  </Link>
+
+  <Link
+    href="/register"
+    className="text-blue-600 hover:underline block"
+  >
+    Create Account
+  </Link>
+</div>
+          
         </form>
       </div>
     </main>

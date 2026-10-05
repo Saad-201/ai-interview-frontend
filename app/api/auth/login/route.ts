@@ -39,7 +39,7 @@ export async function POST(request: Request) {
       },
     });
 
-    response.cookies.set("auth_token", "mock-jwt-token", { //creating the autherntacation token
+    response.cookies.set("auth_token",  String(user.id), { //creating the autherntacation token
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
