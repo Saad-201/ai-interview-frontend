@@ -141,15 +141,8 @@ export default function AdminLayout({
             </p>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-5">
-            <div className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 md:flex">
-              <Search size={17} className="text-slate-400" />
-              <input
-                type="search"
-                placeholder="Search..."
-                className="w-36 bg-transparent text-sm outline-none placeholder:text-slate-400"
-              />
-            </div>
+          <div className="flex items-center gap-3">
+            
 
             <button
               type="button"
